@@ -7,15 +7,7 @@ export default async function GamePage() {
 
   return (
     <div>
-      <CreateGame />
-      <div>
-        {myGames.map((g) => (
-          <>
-            <h1>{g.gameName}</h1>
-            <DeleteButton game={g} />
-          </>
-        ))}
-      </div>
+      <h1> Future List of games</h1>
     </div>
   );
 }

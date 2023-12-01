@@ -6,6 +6,7 @@ import { InsertGameModel, SelectGameModel, games } from "../db/schema";
 
 export async function insertGame(input: InsertGameModel) {
   return db.insert(games).values({
+    userId: input.userId,
     gameName: input.gameName,
   });
 }
@@ -16,4 +17,10 @@ export async function getGames() {
 
 export async function deleteGame(game: SelectGameModel) {
   await db.delete(games).where(eq(games.id, game.id));
+}
+
+export async function getGameById(gameId: number) {
+  return db.query.games.findFirst({
+    where: (games, { eq }) => eq(games.id, gameId),
+  });
 }

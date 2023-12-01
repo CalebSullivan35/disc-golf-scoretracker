@@ -11,7 +11,7 @@ import {
 export async function insertGamePlayer(input: InsertGamePlayerModel) {
   return db.insert(gamePlayers).values({
     gameId: input.gameId,
-    playerId: input.playerId,
+    playerName: input.playerName,
   });
 }
 

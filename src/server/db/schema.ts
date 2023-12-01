@@ -39,6 +39,7 @@ export const mysqlTable = mysqlTableCreator(
 
 //Game Table Managment
 export const games = mysqlTable("game", {
+  userId: varchar("user_Id", { length: 50 }),
   id: int("id").primaryKey().autoincrement(),
   gameName: varchar("game_name", { length: 50 }),
   createdAt: timestamp("created_at")
@@ -50,17 +51,17 @@ export const games = mysqlTable("game", {
 export type InsertGameModel = InferInsertModel<typeof games>;
 export type SelectGameModel = InferSelectModel<typeof games>;
 
-export const players = mysqlTable("player", {
-  id: int("id").primaryKey().autoincrement(),
-  name: varchar("name", { length: 50 }),
-});
-export type InsertPlayerModel = InferInsertModel<typeof players>;
-export type SelectPlayerModel = InferSelectModel<typeof players>;
+// export const players = mysqlTable("player", {
+//   id: int("id").primaryKey().autoincrement(),
+//   name: varchar("name", { length: 50 }),
+// });
+// export type InsertPlayerModel = InferInsertModel<typeof players>;
+// export type SelectPlayerModel = InferSelectModel<typeof players>;
 
 export const gamePlayers = mysqlTable("gamePlayer", {
   id: int("id").primaryKey().autoincrement(),
   gameId: int("game_id").references(() => games.id),
-  playerId: int("player_id").references(() => players.id),
+  playerName: varchar("player-name", { length: 50 }),
 });
 export type InsertGamePlayerModel = InferInsertModel<typeof gamePlayers>;
 export type SelectGamePlayerModel = InferSelectModel<typeof gamePlayers>;
